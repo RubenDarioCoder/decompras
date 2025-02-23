@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let total = 0; // Variable para almacenar el total
 
     function cargarProducto() {
-        const productosGuardados = localStorage.getItem('productos');
+        const productosGuardados = localStorage.getItem('productos_decompras'); // Cambiado
         if (productosGuardados) {
             productosGuardados.split(',').forEach(producto => {
                 const [productoTexto, precio, cantidad, marcado] = producto.split('|');
@@ -128,31 +128,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function guardarProducto(productoTexto, precio, cantidad, marcado) {
-        const productosGuardados = localStorage.getItem('productos');
+        const productosGuardados = localStorage.getItem('productos_decompras'); // Cambiado
         const listaProductos = productosGuardados ? productosGuardados.split(',') : [];
         listaProductos.push(`${productoTexto}|${precio}|${cantidad}|${marcado}`);
-        localStorage.setItem('productos', listaProductos.join(','));
+        localStorage.setItem('productos_decompras', listaProductos.join(',')); // Cambiado
     }
 
     function actualizarProductoEnLocalStorage(productoTexto, precio, cantidad, marcado) {
-        const productosGuardados = localStorage.getItem('productos');
+        const productosGuardados = localStorage.getItem('productos_decompras'); // Cambiado
         if (productosGuardados) {
             const listaProductos = productosGuardados.split(',').map(producto => {
                 const [texto, prec, cant, marc] = producto.split('|');
                 return texto === productoTexto ? `${texto}|${precio}|${cantidad}|${marcado}` : producto;
             });
-            localStorage.setItem('productos', listaProductos.join(','));
+            localStorage.setItem('productos_decompras', listaProductos.join(',')); // Cambiado
         }
     }
 
     function eliminarProductoDeLocalStorage(productoTexto) {
-        const productosGuardados = localStorage.getItem('productos');
+        const productosGuardados = localStorage.getItem('productos_decompras'); // Cambiado
         if (productosGuardados) {
             const listaProductos = productosGuardados.split(',').filter(producto => {
                 const [texto] = producto.split('|');
                 return texto !== productoTexto;
             });
-            localStorage.setItem('productos', listaProductos.join(','));
+            localStorage.setItem('productos_decompras', listaProductos.join(',')); // Cambiado
         }
     }
 

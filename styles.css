@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Merriweather', sans-serif;
-    padding-top: 5rem; /* Ajusta este valor según la altura del .contenedorPrimario */
+    padding-top: 5rem;
 }
 
 h2 {
@@ -22,7 +22,7 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 400px;
-    margin-top: 0; /* Sin margen superior adicional */
+    margin-top: 0;
 }
 
 .contenedorPrimario {
@@ -41,25 +41,24 @@ section {
 
 .contenedorInputBoton {
     display: flex;
-    align-items: center; 
-    gap: 10px; 
+    align-items: center;
+    gap: 10px;
 }
 
 .sumaTotal {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-left: auto; 
+    margin-left: auto;
 }
 
 .productoCreado input[type="number"] {
-    width: 80px; /* Ancho para los campos de precio y cantidad */
+    width: 80px;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #90caf9;
     margin-left: 10px;
 }
-
 
 input[type="number"] {
     appearance: textfield;
@@ -76,8 +75,7 @@ input {
     font-size: 1rem;
     padding: 10px;
     border-radius: 10px;
-    border: 2px solid #90caf9;;
-
+    border: 2px solid #90caf9;
 }
 
 #botonAgregarProducto {
@@ -116,29 +114,47 @@ input {
     border: 1px solid #a5d6a7;
     margin-bottom: 10px;
     background: #c8e6c9;
-    opacity: 0;
-    transform: translateX(-20px);
+    opacity: 1; /* Asegúrate de que la opacidad sea 1 */
+    transform: translateX(0); /* Asegúrate de que no esté desplazado */
     animation: slideIn 0.5s ease-out forwards;
+    overflow: visible; /* Cambia a visible para asegurarte de que el contenido no esté oculto */
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.productoCreado span {
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2; /* Limita el texto a 2 líneas */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis; /* Muestra "..." si el texto es demasiado largo */
+    margin-right: 10px;
+    line-height: 1.5;
+}
+
+.productoCreado div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.productoCreado input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #90caf9;
+    flex-shrink: 0;
 }
 
 .productoCreado button {
-    margin-left: 10px;
+    margin-left: 0;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    flex-shrink: 0;
 }
 
 .botonMarcado {
@@ -158,4 +174,33 @@ input {
 
 .botonEliminar:hover {
     background-color: #d80505;
+}
+
+@media (max-width: 480px) {
+    .contenedorInputBoton {
+        flex-direction: column;
+    }
+
+    .contenedorInputBoton input {
+        width: 100%;
+    }
+
+    #botonAgregarProducto {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .productoCreado {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .productoCreado div {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .productoCreado input[type="number"] {
+        width: 50px;
+    }
 }

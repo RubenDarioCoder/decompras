@@ -1,5 +1,5 @@
 body {
-    background-color: #2b2eff;
+    background-color: #3D50B9;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -10,13 +10,13 @@ body {
 }
 
 h2 {
-    color: #2b2eff;
+    color: #FCFEFD;
     margin-bottom: 20px;
     text-align: center;
 }
 
 section {
-    background: rgb(99, 187, 228);
+    background: #31DCB7;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -33,7 +33,7 @@ section {
     width: 90%;
     max-width: 400px;
     z-index: 1000;
-    background: rgb(99, 187, 228);
+    background: #31DCB7;
     padding: 10px 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -55,13 +55,6 @@ section {
     margin-left: auto;
 }
 
-.productoCreado input[type="number"] {
-    width: 80px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #90caf9;
-    margin-left: 10px;
-}
 
 input[type="number"] {
     appearance: textfield;
@@ -116,11 +109,11 @@ input {
     border-radius: 10px;
     border: 1px solid #a5d6a7;
     margin-bottom: 10px;
-    background: #c8e6c9;
-    opacity: 1; /* Asegúrate de que la opacidad sea 1 */
-    transform: translateX(0); /* Asegúrate de que no esté desplazado */
+    background: #5060BC;
+    opacity: 1; 
+    transform: translateX(0); 
     animation: slideIn 0.5s ease-out forwards;
-    overflow: visible; /* Cambia a visible para asegurarte de que el contenido no esté oculto */
+    overflow: visible;
 }
 
 .productoCreado span {
@@ -128,11 +121,12 @@ input {
     overflow: hidden;
     display: -webkit-box;
     line-clamp: 2;
-    -webkit-line-clamp: 2; /* Limita el texto a 2 líneas */
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis; /* Muestra "..." si el texto es demasiado largo */
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: j;
+    text-overflow: ellipsis;
     margin-right: 10px;
     line-height: 1.5;
+    color: #FCFDFE;
 }
 
 .productoCreado div {
@@ -140,15 +134,26 @@ input {
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+    
 }
 
-.productoCreado input[type="number"] {
-    width: 60px;
+
+.inputPrecio {
+    width: 100px;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #90caf9;
     flex-shrink: 0;
 }
+
+.inputCantidad {
+    width: 50px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #90caf9;
+    flex-shrink: 0;
+}
+
 
 .productoCreado button {
     margin-left: 0;
@@ -180,7 +185,7 @@ input {
 }
 
 @media (max-width: 480px) {
-    /* Ajustes solo para la lista de productos */
+    
     .productoCreado {
         flex-direction: column;
         align-items: flex-start;
@@ -191,18 +196,22 @@ input {
         justify-content: space-between;
     }
 
-    .productoCreado input[type="number"] {
-        width: 50px;
-    }
-
-    /* Ajustes para el contenedorInputBoton en resoluciones pequeñas */
+    
     .contenedorInputBoton input {
-        width: 200px; /* Ancho fijo para el input */
+        width: 160px; 
     }
 
     
 
     .sumaTotal {
-        font-size: 1rem; /* Reduce el tamaño de la fuente si es necesario */
+        font-size: 1.5rem;
+    }
+    
+    .inputPrecio {
+        width: 90px;
+    }
+    
+    .inputCantidad {
+        width: 35###px;
     }
 }

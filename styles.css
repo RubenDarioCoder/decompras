@@ -1,28 +1,28 @@
 body {
-    background-color: #2b2eff;
+    background-color: #3D50B9;
     margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Merriweather', sans-serif;
-    padding-top: 5rem; /* Ajusta este valor según la altura del .contenedorPrimario */
+    padding-top: 5rem;
 }
 
 h2 {
-    color: #2b2eff;
+    color: #FCFEFD;
     margin-bottom: 20px;
     text-align: center;
 }
 
 section {
-    background: rgb(99, 187, 228);
+    background: #31DCB7;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 400px;
-    margin-top: 0; /* Sin margen superior adicional */
+    margin-top: 0;
 }
 
 .contenedorPrimario {
@@ -33,7 +33,7 @@ section {
     width: 90%;
     max-width: 400px;
     z-index: 1000;
-    background: rgb(99, 187, 228);
+    background: #31DCB7;
     padding: 10px 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -41,23 +41,18 @@ section {
 
 .contenedorInputBoton {
     display: flex;
-    align-items: center; 
-    gap: 10px; 
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 10px;
 }
 
 .sumaTotal {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-left: auto; 
-}
-
-.productoCreado input[type="number"] {
-    width: 80px; /* Ancho para los campos de precio y cantidad */
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #90caf9;
-    margin-left: 10px;
+    margin-left: auto;
 }
 
 
@@ -76,8 +71,7 @@ input {
     font-size: 1rem;
     padding: 10px;
     border-radius: 10px;
-    border: 2px solid #90caf9;;
-
+    border: 2px solid #90caf9;
 }
 
 #botonAgregarProducto {
@@ -115,30 +109,60 @@ input {
     border-radius: 10px;
     border: 1px solid #a5d6a7;
     margin-bottom: 10px;
-    background: #c8e6c9;
-    opacity: 0;
-    transform: translateX(-20px);
+    background: #5060BC;
+    opacity: 1; 
+    transform: translateX(0); 
     animation: slideIn 0.5s ease-out forwards;
+    overflow: visible;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.productoCreado span {
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: j;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+    line-height: 1.5;
+    color: #FCFDFE;
 }
+
+.productoCreado div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    
+}
+
+
+.inputPrecio {
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #90caf9;
+    flex-shrink: 0;
+}
+
+.inputCantidad {
+    width: 50px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #90caf9;
+    flex-shrink: 0;
+}
+
 
 .productoCreado button {
-    margin-left: 10px;
+    margin-left: 0;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    flex-shrink: 0;
 }
 
 .botonMarcado {
@@ -158,4 +182,36 @@ input {
 
 .botonEliminar:hover {
     background-color: #d80505;
+}
+
+@media (max-width: 480px) {
+    
+    .productoCreado {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .productoCreado div {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    
+    .contenedorInputBoton input {
+        width: 160px; 
+    }
+
+    
+
+    .sumaTotal {
+        font-size: 1.5rem;
+    }
+    
+    .inputPrecio {
+        width: 90px;
+    }
+    
+    .inputCantidad {
+        width: 35###px;
+    }
 }

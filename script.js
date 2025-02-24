@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const inputCantidad = document.createElement('input');
         inputCantidad.type = 'number';
-        inputCantidad.placeholder = 'Cantidad';
+        inputCantidad.placeholder = 'Cant';
         inputCantidad.min = 1;
         inputCantidad.step = 1;
         inputCantidad.value = cantidad;

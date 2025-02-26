@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const textoProducto = document.createElement('span');
         textoProducto.textContent = productoTexto;
 
-       
         const inputPrecio = document.createElement('input');
         inputPrecio.type = 'number';
         inputPrecio.placeholder = 'Precio';
@@ -44,76 +43,72 @@ document.addEventListener('DOMContentLoaded', () => {
         inputPrecio.step = 0.01;
         inputPrecio.value = precio;
         inputPrecio.classList.add('inputPrecio');
+        inputPrecio.dataset.prevPrecio = precio; // Guardar el valor inicial del precio
 
-       
         inputPrecio.addEventListener('focus', () => {
             if (parseFloat(inputPrecio.value) === 0) {
                 inputPrecio.value = '';
             }
         });
 
-        
         inputPrecio.addEventListener('blur', () => {
             if (inputPrecio.value === '') {
                 inputPrecio.value = 0;
             }
         });
 
-        
         const inputCantidad = document.createElement('input');
         inputCantidad.type = 'number';
-        inputCantidad.placeholder = 'Cant';
+        inputCantidad.placeholder = 'Cantidad';
         inputCantidad.min = 1;
         inputCantidad.step = 1;
         inputCantidad.value = cantidad;
         inputCantidad.classList.add('inputCantidad');
+        inputCantidad.dataset.prevCantidad = cantidad; // Guardar el valor inicial de la cantidad
 
-       
         const actualizarTotal = () => {
             const nuevoPrecio = parseFloat(inputPrecio.value) || 0;
             const nuevaCantidad = parseFloat(inputCantidad.value) || 1;
             const subtotal = nuevoPrecio * nuevaCantidad;
 
-            
+            // Restar el valor anterior del total
             total -= (parseFloat(inputPrecio.dataset.prevPrecio) || 0) * (parseFloat(inputCantidad.dataset.prevCantidad) || 1);
+            // Sumar el nuevo subtotal al total
             total += subtotal;
 
-            
+            // Actualizar los valores anteriores
             inputPrecio.dataset.prevPrecio = nuevoPrecio;
             inputCantidad.dataset.prevCantidad = nuevaCantidad;
 
-          
+            // Actualizar el total en la interfaz
             sumaTotal.textContent = total.toFixed(2);
 
-            
+            // Actualizar el producto en el localStorage
             actualizarProductoEnLocalStorage(productoTexto, nuevoPrecio, nuevaCantidad, marcado);
         };
 
-       
         inputPrecio.addEventListener('input', actualizarTotal);
         inputCantidad.addEventListener('input', actualizarTotal);
 
-       
         const botonMarcar = document.createElement('button');
         botonMarcar.textContent = '✓';
         botonMarcar.classList.add(marcado ? 'botonMarcado' : 'botonDesmarcado');
         botonMarcar.addEventListener('click', () => {
             botonMarcar.classList.toggle('botonMarcado');
             botonMarcar.classList.toggle('botonDesmarcado');
-            marcado = !marcado; 
+            marcado = !marcado;
             actualizarProductoEnLocalStorage(productoTexto, parseFloat(inputPrecio.value), parseFloat(inputCantidad.value), marcado);
         });
 
-        
         const botonEliminar = document.createElement('button');
         botonEliminar.textContent = 'X';
         botonEliminar.classList.add('botonEliminar');
         botonEliminar.addEventListener('click', () => {
-           
+            // Restar el valor del producto eliminado del total
             total -= (parseFloat(inputPrecio.value) || 0) * (parseFloat(inputCantidad.value) || 1);
             sumaTotal.textContent = total.toFixed(2);
 
-            
+            // Eliminar el producto de la lista
             productoCreado.remove();
             eliminarProductoDeLocalStorage(productoTexto);
         });
@@ -124,16 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
         productoCreado.append(textoProducto, divControles);
         listaProductos.appendChild(productoCreado);
 
-        
+        // Sumar el valor inicial del producto al total
         total += (parseFloat(inputPrecio.value) || 0) * (parseFloat(inputCantidad.value) || 1);
         sumaTotal.textContent = total.toFixed(2);
     }
 
     function guardarProducto(productoTexto, precio, cantidad, marcado) {
-        const productosGuardados = localStorage.getItem('productos_decompras'); 
+        const productosGuardados = localStorage.getItem('productos_decompras');
         const listaProductos = productosGuardados ? productosGuardados.split(',') : [];
         listaProductos.push(`${productoTexto}|${precio}|${cantidad}|${marcado}`);
-        localStorage.setItem('productos_decompras', listaProductos.join(',')); 
+        localStorage.setItem('productos_decompras', listaProductos.join(','));
     }
 
     function actualizarProductoEnLocalStorage(productoTexto, precio, cantidad, marcado) {
@@ -143,18 +138,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const [texto, prec, cant, marc] = producto.split('|');
                 return texto === productoTexto ? `${texto}|${precio}|${cantidad}|${marcado}` : producto;
             });
-            localStorage.setItem('productos_decompras', listaProductos.join(',')); 
+            localStorage.setItem('productos_decompras', listaProductos.join(','));
         }
     }
 
     function eliminarProductoDeLocalStorage(productoTexto) {
-        const productosGuardados = localStorage.getItem('productos_decompras'); 
+        const productosGuardados = localStorage.getItem('productos_decompras');
         if (productosGuardados) {
             const listaProductos = productosGuardados.split(',').filter(producto => {
                 const [texto] = producto.split('|');
                 return texto !== productoTexto;
             });
-            localStorage.setItem('productos_decompras', listaProductos.join(',')); // Cambiado
+            localStorage.setItem('productos_decompras', listaProductos.join(','));
         }
     }
 
